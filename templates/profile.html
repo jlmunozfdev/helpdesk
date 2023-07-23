@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/bc48b26896.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>HELPDESK</title>
+  </head>
+ 
+    <body class="flex bg-gray min-h-screen" x-data="{panel:false, menu:true}">
+        
+        <aside class="flex flex-col":class="{'hidden sm:flex sm:flex-col': window.outerWidth > 768}">
+            <a
+                href="#" class= "inline-flex items-center justify-center h-20 w-full bg-gradient-to-b from-gray-700 via-gray-900 to-black">
+                    <img src="../static/img/logo.png" alt="" class="w-48" />
+            </a>
+
+            <div class= "flex-grow flex flex-col justify-between bg-gradient-to-t from-gray-700 via-gray-900 to-black">
+
+                <nav class="flex flex-col mx-4 my-6 space-y-4">
+
+                        <a href="{{url_for('principal')}}" class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 text-slate-100":class="{'justify-start': menu, 'justify-center': menu == false}">
+
+                                <i class="fa-solid fa-house"></i>
+                                <span class="ml-2 font-bold" x-show="menu">INICIO</span>
+
+                        </a>
+
+                        <a href="#" class="inline-flex items-center py-3 text-blue-600 bg-white rounded-lg px-2":class="{'justify-start': menu, 'justify-center': menu == false}">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="ml-2 font-bold" x-show="menu">PERFIL</span>
+                        </a>
+                        
+                        <a href="#" class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 text-slate-100":class="{'justify-start': menu, 'justify-center': menu == false}">
+                            <i class="fa-solid fa-table"></i>
+                            <span class="ml-2 font-bold" x-show="menu">REPORTES</span>
+                        </a>
+
+                        <a href="#" class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 text-slate-100":class="{'justify-start': menu, 'justify-center': menu == false}">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="ml-2 font-bold" x-show="menu">CONFIGURACIÓN</span>
+                        </a>
+                        
+                </nav>
+
+            </div>
+
+        </aside>
+
+        <div class="flex-grow text-gray-800">
+
+            <header class="flex items-center h-20 px-2 sm:px-5 bg-gradient-to-b from-gray-700 via-gray-900 to-black">
+                
+                <div class="flex flex-shrink-0 items-center ml-auto">
+
+                    <button class="relative inline-flex items-center p-2 hover:bg-gray-100 rounded-lg text-slate-100 hover:text-gray-600" @click="panel = !panel" @click.away="panel = false">
+
+                        <span class="sr-only">User Menu</span>
+                        <div class="hidden md:flex md:flex-col md:items-end md:leading-tight">
+                            <span class="font-semibold">Jorge Muñoz</span>
+                            <span class="text-sm text-gray-600">Coordinador TI</span>
+                        </div>
+
+                        <span class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
+                            <img src="../static/img/perfil.png" alt="user profile photo" class="h-full w-full object-cover"/>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </button>
+                
+                    <div class="absolute top-20 bg-white border rounded-md p-2 w-56" x-show="panel" style="display: none">
+                        <div class="p-2 hover:bg-blue-100 cursor-pointer">Profile</div>
+                        <div class="p-2 hover:bg-blue-100 cursor-pointer">Messages</div>
+                        <div class="p-2 hover:bg-blue-100 cursor-pointer">To-Do's</div>
+                    </div>
+
+                    <div class="border-l pl-3 ml-3 space-x-1">
+
+                        <a href="" class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+                            <i class="fa-regular fa-bell text-gray-600 text-xl"></i>
+                        </a>
+                        
+                        <a href="{{ url_for('login')}}" class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
+                            <i class="fa-solid fa-right-from-bracket text-gray-600 text-xl"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <main class="p-2 sm:p-1 space-y-2 flex flex-col justify-around gap-0">
+
+                <section class="p-6 dark:bg-gray-800 dark:text-gray-50 flex flex-col justify-center items-center h-max">
+
+                    <form novalidate="" action="" class="container flex flex-col mx-auto space-y-12">
+
+                        <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
+
+                            <div class="space-y-2 col-span-full lg:col-span-1">
+                                <p class="text-2xl font-bold text-center">Jorge Muñoz</p>
+                                <div class="flex items-center justify-center rounded-2xl border-white border-2">
+                                    <img class="rounded-2xl" src="../static/img/profile_2.jpg" alt="Foto Perfil">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                                <div class="col-span-full sm:col-span-3">
+                                    <label for="username" class="text-sm">Nombre: </label>
+                                    <input id="username" type="text" placeholder="Nombre" class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 p-2">
+                                </div>
+
+                                <div class="col-span-full sm:col-span-3">
+                                    <label for="apellidos" class="text-sm">Apellidos: </label>
+                                    <input id="apellidos" type="text" placeholder="Apellidos" class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 p-2">
+                                </div>
+
+                                <div class="col-span-full sm:col-span-3">
+                                    <label for="user" class="text-sm">Usuario: </label>
+                                    <input id="user" type="text" placeholder="Usuario" class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 p-2">
+                                </div>
+
+                                <div class="col-span-full sm:col-span-3">
+                                    <label for="password" class="text-sm">Contraseña: </label>
+                                    <input id="password" type="password" placeholder="Contraseña" class="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900 p-2">
+                                </div>
+
+                                <div class="col-span-full sm:col-span-3">
+                                  
+                                        <label for="rol" class="text-sm">Rol:</label>
+                                      
+                                        <select name="rol" id="rol" class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm p-2">
+                                          <option value="">Selecciona...</option>
+                                          <option value="A">Administrador</option>
+                                          <option value="E">Empleado</option>
+                                         
+                                        </select>
+                                    
+                                </div>
+                                
+                                <div class="col-span-full">
+                                    <label for="bio" class="text-sm">Foto</label>
+                                    <div class="flex items-center space-x-2">
+                                        <img src="https://source.unsplash.com/30x30/?random" alt="" class="w-10 h-10 rounded-full dark:bg-gray-700">
+                                        <button type="button" class="px-4 py-2 border rounded-md dark:border-gray-100">Cambiar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-span-full flex justify-end mb-2">
+                                <button type="submit" class="px-4 py-2 border rounded-md dark:border-gray-100">Guardar</button>
+                            </div>
+
+                            <footer class="col-span-full text-center border-t-2 border-blue-950 p-2 flex justify-center items-center">
+                                <span>Todos los derechos reservados RSS Consulting Group © 2023 | Desing by <a href="#">@jlmunozfdev</a></span>
+                            </footer>
+
+
+                        </fieldset>
+
+                    </form>
+
+                </section>
+            </main>
+        </div>
+
+    </body>
+ 
+</html>
